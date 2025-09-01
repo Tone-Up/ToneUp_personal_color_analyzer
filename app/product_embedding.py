@@ -33,6 +33,6 @@ def get_clip_embedding(image: Image.Image, text: str):
 
     # 이미지 + 텍스트 임베딩을 합쳐서 최종 벡터 생성
     combined_emb = torch.cat([image_emb, text_emb], dim=-1)
-    return combined_emb.cpu().numpy().tolist()
+    return combined_emb.squeeze(0).cpu().numpy().tolist()
 
 

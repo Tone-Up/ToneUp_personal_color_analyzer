@@ -18,11 +18,11 @@ from product_embedding import get_clip_embedding
 app = FastAPI()
 
 # 임베딩 저장 폴더
-EMBEDDING_DIR = "embeddings"
+EMBEDDING_DIR = "../embeddings"
 os.makedirs(EMBEDDING_DIR, exist_ok=True)
 
 # 서버에 저장된 이미지 경로
-IMAGE_DIR = "product_images"  # 이미지가 저장된 폴더
+IMAGE_DIR = "../product_images"  # 이미지가 저장된 폴더
 os.makedirs(IMAGE_DIR, exist_ok=True)
 
 
@@ -79,7 +79,7 @@ async def embed_product(products: List[Product]):
         all_embeddings.append({"product_id": product.id, "embedding": embedding})
 
         # save_path = os.path.join(EMBEDDING_DIR, f"{product.id}.json")
-    output_file = os.path.join(EMBEDDING_DIR, "all_embeddings.json")
+    output_file = os.path.join(EMBEDDING_DIR, "product_embeddings.json")
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(all_embeddings, f, ensure_ascii=False)
 
@@ -90,7 +90,7 @@ async def embed_product(products: List[Product]):
     }
     return FileResponse(
         path=output_file,
-        filename="all_embeddings.json",
+        filename="product_embeddings.json",
         media_type="application/json",
         headers=headers
     )
@@ -118,7 +118,7 @@ def make_clip_text(color_: str = "", gender: str = "", type_: str = ""):
     if color_:
         sentence_parts.append(f"{color_} ")
     if gender:
-        sentence_parts.append(f"for {gender}")
+        sentence_parts.append(f"for {gender} ")
     if type_:
         sentence_parts.append(type_)
     sentence_text = f"".join(sentence_parts)
