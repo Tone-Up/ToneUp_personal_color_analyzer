@@ -1,0 +1,14 @@
+services:
+  fastapi:
+    container_name: fastapi-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      # 외부 데이터를 컨테이너 내부 동일 경로로 마운트
+      - /home/ksy98/opt/toneupFastApi/embeddings:/embeddings
+      - /home/ksy98/opt/toneupFastApi/shape-predictor:/shape-predictor
+      - /home/ksy98/opt/toneupFastApi/product_images:/product_images
+    restart: always

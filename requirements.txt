@@ -1,0 +1,27 @@
+# FastAPI 서버
+fastapi==0.111.0
+uvicorn==0.23.2
+gunicorn==21.2.0
+python-multipart==0.0.20
+starlette==0.27.2
+
+# ML / 멀티모달
+torch==2.8.0
+torchvision==0.23.0
+tqdm==4.67.1
+transformers==4.55.4
+safetensors==0.6.2
+sentencepiece==0.2.1
+open_clip_torch==2.11.0   # 설치 필요 시
+
+# 이미지 처리 / 데이터 처리
+numpy==1.26.4
+scipy==1.15.3
+pillow==11.3.0
+opencv-contrib-python==4.11.0.86
+mediapipe==0.10.21
+
+# 유틸 / 기타
+requests==2.32.5
+typing-extensions==1.0.0
+python-dotenv==1.0.1  # 환경변수 사용 시
